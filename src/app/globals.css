@@ -19,8 +19,53 @@
   }
 }
 
+@theme {
+  /* Base Colors */
+  --color-primary: #735167;         /* Eggplant – brand anchor */
+  --color-secondary: #C79FB2;       /* Lilac – softer accent */
+  --color-danger: #D96666;          /* Warmer red for alerts */
+  --color-success: #4CAF50;         /* Balanced green */
+  --color-info: #6A9ECF;            /* Calming blue for info states */
+  --color-neutral: #FFFFFF;         /* True white for cards/bg */
+  --color-surface: #F9F9FA;         /* Subtle off-white background */
+  --color-card: #F3F3F5;            /* Card gray */
+  --color-border: #E1E1E6;          /* Soft neutral border */
+
+  /* Text Colors */
+  --color-text-primary: #1E1E1E;    /* High-contrast black/gray */
+  --color-text-secondary: #5A4A55;  /* Muted eggplant gray */
+  --color-text-muted: #7C7C88;      /* Neutral muted text */
+
+  /* Hover / Active Variants */
+  --color-primary-hover: #8A6F81;
+  --color-primary-active: #5A3F54;
+
+  --color-secondary-hover: #D9B8C8;
+  --color-secondary-active: #B78AA2;
+
+  --color-danger-hover: #E07A7A;
+  --color-danger-active: #B94C4C;
+
+  --color-success-hover: #66C971;
+  --color-success-active: #3C8F3C;
+
+  --color-info-hover: #82B2D9;
+  --color-info-active: #4E84B8;
+}
+  
+
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+h1 {
+  @apply text-3xl
+}
+
+h2 {
+  @apply text-2xl
 }
