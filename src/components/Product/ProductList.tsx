@@ -15,7 +15,7 @@ export const ProductList = ({products, onProductCardClick} : {products: PrismaPr
           <ProductCard
             key={product.id}
             title={product.title}
-            price={product.price.toString()}
+            price={product.price}
             id={product.id}
             onClick={() =>
               onProductCardClick(product)

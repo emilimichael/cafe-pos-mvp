@@ -1,18 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model Products {
+model Product {
   id    Int      @id @default(autoincrement())
   name  String  @db.VarChar(50)
   price Decimal @db.Decimal(10, 2)
+
+  orderItems OrderItem[]
 }
 
 model User {
@@ -20,4 +26,27 @@ model User {
   username String
   password String
   isAdmin Boolean?
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  total Decimal @db.Decimal(10, 2)
+
+  items OrderItem[]
+  
+}
+
+model OrderItem {
+  id Int @id @default(autoincrement())
+
+  priceAtTime Decimal @db.Decimal(10, 2) //snapshot
+  productName String @db.VarChar(50) //snapshot
+
+  orderId Int
+  order Order @relation(fields: [orderId], references: [id])
+
+  productId Int?
+  product Product? @relation(fields: [productId], references: [id])
+
 }
