@@ -41,7 +41,7 @@ model OrderItem {
   id Int @id @default(autoincrement())
 
   priceAtTime Decimal @db.Decimal(10, 2) //snapshot
-  productName String @db.VarChar(50) //snapshot
+  quantity Int
 
   orderId Int
   order Order @relation(fields: [orderId], references: [id])
